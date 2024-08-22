@@ -2,21 +2,11 @@ import React, { useEffect, useState } from "react";
 import { ProductsListDTO } from "../dto/productDto";
 import { HttpService } from "../services/http-service";
 import { useNavigate } from "react-router-dom";
-import MainLayouts from "../layouts/main-layouts";
+import img from "../../public/imsges/cuteLamma.jpg";
 
-// type listProduct = {
-//   id: string;
-//   title: string;
-//   categoryTitle: string;
-//   realPrice: number;
-//   salesPrice: number;
-//   qty: number;
-//   createdAt: string;
-// };
 const ProductsList = () => {
   const [products, setProducts] = useState<ProductsListDTO[]>([]);
 
-  //const [id , setId] = useState(0)
   const navigate = useNavigate();
   const onClickHome = () => {
     navigate("/");
@@ -33,28 +23,39 @@ const ProductsList = () => {
       });
   }, []);
   return (
-    <div>
-      {" "}
+    <div className="card bg-base-100 shadow-xl  ">
       <h1 onClick={onClickHome} className="p-2 text-2xl font-bold  ">
         Home
       </h1>
-      <div className="grid grid-cols-4 gap-4 m-2 p-4 ">
+      <div className="">
+    <figure>
+        <img />
+      </figure>
+      <div className="card-body grid grid-cols-4 gap-4">
         {products.map((item) => (
-          <div key={item.id} className="border p-3 m-1 rounded-md ">
-            <h3
-              className="text-lg font-medium pb-2 cursor-pointer"
+          <div key={item.id} className="border py-2 px-4 m-1  rounded-md ">
+            <h2
+              className="card-title"
               onClick={() => navigate(`/product/${item.id}`)}
             >
               {item.title}
-            </h3>
-            <p>RealPrice: {item.realPrice} </p>
-            <p>SalesPrice: {item.salesPrice} </p>
-            <p>quantity: {item.qty} </p>
+              {/* <div className="badge badge-secondary">NEW</div> */}
+            </h2>
+            <p className="p-2">If a dog chews shoes whose shoes does he choose?</p>
+            <div className="card-actions justify-end">
+              <div className="badge badge-outline p-2">
+                RealPrice: {item.realPrice}
+              </div>
+              <div className="badge badge-outline p-2">
+                SalesPrice: {item.salesPrice}
+              </div>
+              <div className="badge badge-outline p-2 m-1">quantity: {item.qty}</div>
+            </div>
           </div>
         ))}
       </div>
     </div>
+    </div>
   );
 };
-
 export default ProductsList;

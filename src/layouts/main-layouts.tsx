@@ -11,7 +11,7 @@ const MainLayouts: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <div>
       <nav className="bg-gray-400 p-2 m-2 rounded-lg ">
-        <button onClick={onClick}>products</button>
+        <button onClick={onClick} className="text-gray-700 font-bold">products</button>
       </nav>
       <div>{children}</div>
     </div>
